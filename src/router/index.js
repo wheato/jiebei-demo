@@ -6,6 +6,7 @@ import Loan from '../page/loan'
 import Confirm from '../page/confirm'
 import BindCard from '../page/bindCard'
 import ChooseCard from '../page/chooseCard'
+import PrewView from '../page/preview'
 import Success from '../page/success'
 
 Vue.use(Router)
@@ -35,6 +36,10 @@ const routes = [
     path: '/bindCard',
     name: 'bindCard',
     component: BindCard
+  }, {
+    path: '/preview',
+    name: 'preview',
+    component: PrewView
   }, {
     path: '/success',
     name: 'success',

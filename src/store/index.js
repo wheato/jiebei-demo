@@ -13,7 +13,8 @@ export default new Vuex.Store({
       loanNum: 0,
     },
     interestNum: 0,
-    chosenCard: null
+    chosenCard: null,
+    cardPhotoSrc: '',
   },
 
   actions: {
@@ -42,6 +43,12 @@ export default new Vuex.Store({
     },
     saveLoanNum(context) {
       context.commit('SAVE_LOAN_NUM');
+    },
+    updatePhotoSrc(context, str) {
+      context.commit('UPDATE_PHOTO_SRC', str);
+    },
+    clearPhotoSrc(context) {
+      context.commit('UPDATE_PHOTO_SRC', '');
     }
   },
 
@@ -87,6 +94,9 @@ export default new Vuex.Store({
           loanNum: 0,
       };
       state.interestNum = 0;
+    },
+    ['UPDATE_PHOTO_SRC'](state, str) {
+      state.cardPhotoSrc = str;
     }
   },
 

@@ -1,9 +1,14 @@
 <template>
   <div class="m-bind-card">
+    <div class="m-card-preview"  v-bind="{class: {show: hasPhoto}}" >
+      <figure class="card-img-wrap" v-bind="{style: card_img}" >
+      </figure>
+    </div>
 
     <div class="add-box">
       <input type="number" class="card-num" placeholder="银行卡号" pattern="[0-9]*" v-model="cardNo">
       <input type="text" class="card-name" placeholder="持卡人姓名" v-model="cardName">
+      <Camera></Camera>
     </div>
     <div class="btn-add-card"
          @click="addHandler" v-bind="{class: {able: isAble}}">添加卡片</div>
@@ -11,17 +16,29 @@
 </template>
 
 <script>
+  import Camera from '../components/Camera'
+
   export default{
     name: 'bindCard',
     data() {
       return {
         cardNo: "",
-        cardName: "",
+        cardName: ""
       }
     },
     computed: {
       isAble() {
         return (this.cardName && this.cardNo);
+      },
+      hasPhoto() {
+        return this.$store.state.cardPhotoSrc !== '';
+      },
+      card_img() {
+        if(this.$store.state.cardPhotoSrc){
+          this.cardNo = '6222020903001483077';
+          this.cardName = 'testUser';
+        }
+        return `background-image: url(${this.$store.state.cardPhotoSrc});background-color: transparent;`;
       }
     },
     methods: {
@@ -36,7 +53,8 @@
           return ;
         }
       }
-    }
+    },
+    components: {Camera}
   }
 </script>
 
@@ -47,6 +65,7 @@
       border-top: 1px solid #e1e1e1;
       margin: 15px 0 0;
       padding: 0 15px;
+      position: relative;
       & > input{
         display: block;
         -webkit-appearance: none;
@@ -83,6 +102,31 @@
         background: #108ee9;
         color: #fff;
       }
+    }
+  }
+  .m-card-preview{
+    display: none;
+    &.show{
+      display: block;
+    }
+    .card-img-wrap{
+      margin: 30px;
+      padding-bottom: 50%;
+      background: #e1e1e1;
+      background-position: center;
+      -webkit-background-size: contain;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .card-no{
+      padding: 0 15px;
+      height: 35px;
+      line-height: 35px;
+      font-size: 15px;
+      background: #fff;
+      color: #111;
+      border-top: #e1e1e1 1px solid;
+      border-bottom: #e1e1e1 1px solid;
     }
   }
 </style>
