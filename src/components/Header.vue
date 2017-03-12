@@ -52,7 +52,7 @@
     .left{
       position: absolute;
       left: 15px;
-      color: #888;
+      color: #00aaee;
       &:active{
         opacity: .8;
       }

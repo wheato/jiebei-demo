@@ -25,15 +25,20 @@
 
     <div class="provision"></div>
 
-    <div class="btn-sure-loan" v-bind="{class: {able: hasCard}}" @click="sureHandler">
-      确定
-    </div>
+    <MyButton text="确定"
+              :handler="sureHandler"
+              :is-able="hasCard">
+    </MyButton>
+
   </div>
 </template>
 
 <script>
+  import MyButton from '../components/Button'
+
   export default {
     name: 'confirm',
+    components: {MyButton},
     beforeMount: function (){
       if(!this.$store.state.interestNum
         || typeof this.$store.state.loanData.loanType !== 'number'
@@ -133,20 +138,5 @@
     }
   }
   .provision{}
-  .btn-sure-loan{
-    display: block;
-    margin: 21px 15px 0;
-    height: 40px;
-    color: #bbb;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 16px;
-    line-height: 40px;
-    background-color: #ddd;
-    &.able{
-      background: #108ee9;
-      color: #fff;
-    }
-  }
 }
 </style>

@@ -11,14 +11,19 @@
         <p class="s-text light">利息按天计算，日利率最低1.5</p>
       </div>
     </div>
-    <router-link class="btn-goto-borrow" to="/loan">去借钱</router-link>
+    <MyButton
+      text="去借钱"
+      :is-able="true"
+      :handler="nextHandler"
+    ></MyButton>
 
     <foot></foot>
   </div>
 </template>
 
 <script>
-  import foot from '../components/Footer.vue'
+  import foot from '../components/Footer';
+  import MyButton from '../components/Button';
 
   const addGap = (num) => {
     return num > 1000 ?
@@ -42,9 +47,12 @@
         }
       }
     },
-    components: {
-      foot
-    }
+    methods: {
+      nextHandler(e) {
+        this.$router.push('/loan');
+      }
+    },
+    components: {foot, MyButton}
   }
 </script>
 
@@ -84,17 +92,5 @@
       padding: 12px 0 0;
       border-top: 1px dashed #82c4f4;
     }
-  }
-
-  .btn-goto-borrow{
-    display: block;
-    margin: 21px 9px 0;
-    height: 42px;
-    background: #108ee9;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 16px;
-    line-height: 42px;
-    color: #fff;
   }
 </style>

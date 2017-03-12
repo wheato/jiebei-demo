@@ -7,7 +7,6 @@
 
     <router-link class="btn-add-card" to="/bindCard">添加卡片</router-link>
 
-    </div>
   </div>
 </template>
 
@@ -24,7 +23,7 @@
       chooseHandler: function(e) {
         let index = e.target.getAttribute('data-id');
         this.$store.dispatch('setChosenCard', this.cardList[index]);
-        this.$router.replace('/confirm');
+        this.$router.go(-1);
       }
     }
   }

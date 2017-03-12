@@ -10,13 +10,18 @@
       <input type="text" class="card-name" placeholder="持卡人姓名" v-model="cardName">
       <Camera></Camera>
     </div>
-    <div class="btn-add-card"
-         @click="addHandler" v-bind="{class: {able: isAble}}">添加卡片</div>
+
+    <MyButton
+      text="添加卡片"
+      :is-able="isAble"
+      :handler="addHandler"
+    ></MyButton>
   </div>
 </template>
 
 <script>
-  import Camera from '../components/Camera'
+  import Camera from '../components/Camera';
+  import MyButton from '../components/Button';
 
   const randCardNo = ['6228481698729890079', '6222020903001483077', '6225365271562822'];
   const randCardName = ['李四', '张三', '王五', '赵六'];
@@ -70,7 +75,7 @@
         }
       }
     },
-    components: {Camera}
+    components: {Camera, MyButton}
   }
 </script>
 
@@ -104,21 +109,6 @@
 
     .card-num{
 
-    }
-    .btn-add-card{
-      display: block;
-      margin: 21px 15px 0;
-      height: 40px;
-      color: #bbb;
-      border-radius: 6px;
-      text-align: center;
-      font-size: 16px;
-      line-height: 40px;
-      background-color: #ddd;
-      &.able{
-        background: #108ee9;
-        color: #fff;
-      }
     }
   }
   .m-card-preview{

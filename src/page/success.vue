@@ -7,6 +7,10 @@
 <script>
   export default{
     name: 'chooseCard',
+    beforeMount() {
+      this.$store.dispatch('setLeftText', '');
+      this.$store.dispatch('setLeftType', '');
+    },
     data() {
       return {
         title: "借款成功"

@@ -28,7 +28,6 @@ const routes = [
     name: 'chooseCard',
     component: ChooseCard,
     beforeEnter: (to, from, next) => {
-      console.log(from);
       if(from.path !== '/confirm' && from.path !== '/bindCard'){
         next('/')
       } else {
@@ -40,7 +39,6 @@ const routes = [
     name: 'bindCard',
     component: BindCard,
     beforeEnter: (to, from, next) => {
-      console.log(from);
       if(from.path !== '/chooseCard' && from.path !== '/confirm'){
         next('/')
       } else {

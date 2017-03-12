@@ -49,19 +49,18 @@
         <p>按期还款利息低</p>
       </div>
     </div>
-
-    <router-link class="btn-next-step" to="/confirm"
-                 v-bind="{class: loanData.loanNum && loanData.loanType !== null && !isOut
-                  ? 'able' : '',
-                  to: loanData.loanNum && loanData.loanType !== null && !isOut
-                  ? '/confirm' : '/loan'}">下一步
-    </router-link>
+    <MyButton :handler="nextHandler"
+              :is-able="canNext"
+              text="下一步">
+    </MyButton>
   </div>
 </template>
 
 <script>
+  import MyButton from '../components/Button'
   export default{
     name: 'loan',
+    components: {MyButton},
     data() {
       return {
         loanNum: null,
@@ -75,6 +74,9 @@
     },
 
     computed: {
+      canNext() {
+        return this.loanData.loanNum && this.loanData.loanType !== null && !this.isOut;
+      },
       profile() {
         return this.$store.state.profile
       },
@@ -123,6 +125,11 @@
         this.$store.dispatch('updateLoanNum', e.target.value === '' ? 0 : e.target.value);
         if(type !== null && !this.isOut){
           this.$store.dispatch('computeInterest');
+        }
+      },
+      nextHandler: function(e) {
+        if(this.canNext){
+          this.$router.push({path: '/confirm'});
         }
       }
     }
@@ -264,21 +271,6 @@
           }
         }
       }
-    }
-  }
-  .btn-next-step{
-    display: block;
-    margin: 21px 15px 0;
-    height: 40px;
-    color: #bbb;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 16px;
-    line-height: 40px;
-    background-color: #ddd;
-    &.able{
-      background: #108ee9;
-      color: #fff;
     }
   }
   .float-tips-bar{
