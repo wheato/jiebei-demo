@@ -1,17 +1,39 @@
 <template>
   <header class="m-header">
-    <div class="left"></div>
-    <h1 class="title">我的借呗</h1>
-    <div class="right"></div>
+    <div class="left" @click="backHandler">{{ leftText }}</div>
+    <h1 class="title">{{ navTitle }}</h1>
   </header>
 </template>
 
 <script>
   export default {
     name: 'Header',
+    props: [
+      'navTitle',
+      'leftText',
+      'leftType'
+    ],
     data() {
-      return {};
-    }
+      return {
+      };
+    },
+    methods: {
+      backHandler(e) {
+        switch(this.leftType) {
+          case 0:
+            console.log('go back');
+            this.$router.go(-1);
+            break;
+          case 1:
+            //back index
+            this.$router.push({path: '/'});
+            break;
+          default:
+            //do nothing
+            break;
+        }
+      }
+    },
   }
 </script>
 
@@ -26,6 +48,21 @@
       font-size: 16px;
       color: #111;
       font-weight: normal;
+    }
+    .left{
+      position: absolute;
+      left: 15px;
+      color: #888;
+      &:active{
+        opacity: .8;
+      }
+      &::before{
+
+      }
+    }
+    .right{
+      position: absolute;
+      right: 15px;
     }
     &::after{
       content: "";

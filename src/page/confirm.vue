@@ -35,7 +35,13 @@
   export default {
     name: 'confirm',
     beforeMount: function (){
+      if(!this.$store.state.interestNum
+        || typeof this.$store.state.loanData.loanType !== 'number'
+        || !this.$store.state.loanData.loanNum
+        || !this.$store.state.loanData.loanTime) {
 
+        this.$router.replace({path: '/'});
+      }
     },
     data() {
       let loanData = this.$store.state.loanData;
@@ -46,7 +52,6 @@
         loanType: loanData.loanType ? '每月等额' : '随时',
         loanTime: loanData.loanType ? '6个月' : '45天',
         interest: this.$store.state.interestNum,
-
       }
     },
     computed: {

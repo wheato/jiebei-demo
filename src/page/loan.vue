@@ -5,11 +5,8 @@
       <div class="m-item">
         <label for="J_input_loan_num" class="lable-loan-num">借多少</label>
         <input type="number" id="J_input_loan_num" class="input-loan-num"
-               v-bind="{
-                placeholder: '最多可借' + (profile.total - profile.current) + '元',
-                value: loanData.loanNum ? loanData.loanNum : ''
-                }"
-               pattern="[0-9]*" @input="loanNumChange"/>
+               v-bind="{ placeholder: '最多可借' + (profile.total - profile.current) + '元',
+                value: loanData.loanNum ? loanData.loanNum : '' }" pattern="[0-9]*" @input="loanNumChange" />
       </div>
     </div>
 
@@ -21,11 +18,13 @@
         <span class="type-name">按日借款 | 1～45天</span>
         <span class="type-info">日利率<strong>万2</strong></span>
       </div>
+
       <div class="sub-content">
         <div class="m-item">借多久 <span class="right">45天</span></div>
         <div class="m-item">怎么还 <span class="right">到期一次性还本付息</span></div>
         <div class="m-item">总利息 <span class="right">{{interestNum}}</span></div>
       </div>
+
       <div class="interest-info">
         <p>1000元借1天，利息0.2元</p>
         <p>随借随还0手续费</p>
@@ -71,7 +70,10 @@
       }
     },
     beforeMount: function() {
+      this.$store.dispatch('setLeftText', '返回');
+      this.$store.dispatch('setLeftType', 0);
     },
+
     computed: {
       profile() {
         return this.$store.state.profile
@@ -148,29 +150,30 @@
     .loan-input-box{
       background: #fff;
       height: 66px;
-      font-size: 16px;
       color: #111;
+      overflow: hidden;
       .lable-loan-num{
         display: inline-block;
-        vertical-align: top;
         line-height: 66px;
+        font-size: 16px;
+        float: left;
       }
       .input-loan-num{
-        display: inline-block;
-        height: 22px;
         padding: 22px 0;
-        line-height: 22px;
+        height: 22px;
         -webkit-appearance: none;
         background: transparent;
         border: transparent;
         font-size: 22px;
         text-indent: 20px;
         outline: none;
+        vertical-align: bottom;
         &::-webkit-input-placeholder{
-          font-size: 12px;
+          font-size: 14px;
+          line-height: 32px;
+          position: relative;
+          top: -2px;
         }
-      }
-      .m-item{
       }
     }
 

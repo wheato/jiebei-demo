@@ -18,6 +18,14 @@
 <script>
   import Camera from '../components/Camera'
 
+  const randCardNo = ['6228481698729890079', '6222020903001483077', '6225365271562822'];
+  const randCardName = ['李四', '张三', '王五', '赵六'];
+
+  function randomCard(arr){
+    let length = arr.length;
+    return arr[Math.floor(Math.random() * length)];
+  }
+
   export default{
     name: 'bindCard',
     data() {
@@ -25,6 +33,10 @@
         cardNo: "",
         cardName: ""
       }
+    },
+    beforeMount: function (){
+      this.cardNo = '';
+      this.cardName = '';
     },
     computed: {
       isAble() {
@@ -34,10 +46,11 @@
         return this.$store.state.cardPhotoSrc !== '';
       },
       card_img() {
-        if(this.$store.state.cardPhotoSrc){
-          this.cardNo = '6222020903001483077';
-          this.cardName = 'testUser';
+        if(this.$store.state.cardPhotoSrc !== ''){
+          this.cardNo = randomCard(randCardNo);
+          this.cardName = randomCard(randCardName);
         }
+
         return `background-image: url(${this.$store.state.cardPhotoSrc});background-color: transparent;`;
       }
     },
@@ -48,7 +61,10 @@
             cardNo: this.cardNo,
             cardName: this.cardName
           });
-          this.$router.push({path: 'confirm'})
+          this.cardNo = '';
+          this.cardName = '';
+          this.$store.dispatch('clearPhotoSrc');
+          this.$router.go(-2);
         } else {
           return ;
         }
@@ -60,6 +76,7 @@
 
 <style lang="less" rel="stylesheet/less">
   .m-bind-card{
+    overflow: hidden;
     .add-box{
       background: #fff;
       border-top: 1px solid #e1e1e1;

@@ -28,6 +28,11 @@
 
   export default {
     name: 'index',
+    beforeMount() {
+      this.$store.dispatch('setTitle', '我的借呗');
+      this.$store.dispatch('setLeftText', '');
+      this.$store.dispatch('setLeftType', '');
+    },
     computed: {
       profile() {
         let pf = this.$store.state.profile;

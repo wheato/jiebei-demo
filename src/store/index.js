@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import nav from './modules/nav'
 
 Vue.use(Vuex)
+
 const debug = process.env.NODE_ENV !== 'production';
 
 export default new Vuex.Store({
@@ -36,7 +38,8 @@ export default new Vuex.Store({
     updateLoanTime(context) {
       context.commit('UPDATE_LOAN_TIME');
     },
-    setChosenCard(context) {
+    setChosenCard(context, card) {
+      context.commit('SET_CHOSEN_CARD', card)
     },
     readProfile(context) {
       context.commit('READ_PROFILE');
@@ -98,6 +101,10 @@ export default new Vuex.Store({
     ['UPDATE_PHOTO_SRC'](state, str) {
       state.cardPhotoSrc = str;
     }
+  },
+
+  modules: {
+    nav
   },
 
   strict: debug,

@@ -19,4 +19,21 @@ npm run dev
 * config: wepack和本地测试server的一些配置，由vue-cli生成
 * src: 项目源代码
 
+## 疑问
+
+* 为什么data里引用state里的数据，改变state，data不变化，
+使用computed属性就可以？是什么条件会触发computed的计算？
+* 分Module的store，mutations的命名是不是唯一的，如果是，还有没有其他合理的方式组织这个命名？
+
+
+## Todo
+
+* 导航条组件化
+* 输入清零
+* 按钮组件化
+* select自定义组件
+* select功能
+* 按月等额的详细内容页
+* 通过from来判断和控制页面的返回
+
 

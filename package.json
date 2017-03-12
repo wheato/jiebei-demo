@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "less-loader": "^2.2.3",
+    "tesseract.js": "^1.0.10",
     "vue": "^2.1.10",
     "vue-router": "^2.2.0",
     "vuex": "^2.1.2"

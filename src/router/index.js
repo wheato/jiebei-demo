@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '../page/index'
-import Login from '../page/login'
 import Loan from '../page/loan'
 import Confirm from '../page/confirm'
 import BindCard from '../page/bindCard'
@@ -17,10 +16,6 @@ const routes = [
     name: 'index',
     component: Index
   }, {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  }, {
     path: '/loan',
     name: 'Loan',
     component: Loan
@@ -31,11 +26,27 @@ const routes = [
   },  {
     path: '/chooseCard',
     name: 'chooseCard',
-    component: ChooseCard
+    component: ChooseCard,
+    beforeEnter: (to, from, next) => {
+      console.log(from);
+      if(from.path !== '/confirm' && from.path !== '/bindCard'){
+        next('/')
+      } else {
+        next();
+      }
+    }
   }, {
     path: '/bindCard',
     name: 'bindCard',
-    component: BindCard
+    component: BindCard,
+    beforeEnter: (to, from, next) => {
+      console.log(from);
+      if(from.path !== '/chooseCard' && from.path !== '/confirm'){
+        next('/')
+      } else {
+        next();
+      }
+    }
   }, {
     path: '/preview',
     name: 'preview',
@@ -45,7 +56,7 @@ const routes = [
     name: 'success',
     component: Success
   }
-]
+];
 
 export default new Router({
   routes
