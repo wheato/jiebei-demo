@@ -19,6 +19,9 @@ npm run dev
 * config: wepack和本地测试server的一些配置，由vue-cli生成
 * src: 项目源代码
 
+## 预览地址
+[https://wheato.github.io/demo/jiebei/](https://wheato.github.io/demo/jiebei/#/)
+
 ## 疑问
 
 * 为什么data里引用state里的数据，改变state，data不变化，
